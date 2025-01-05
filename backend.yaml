@@ -1,0 +1,4 @@
+- name: configuring backend
+  hosts: backend
+  roles:
+  - backend

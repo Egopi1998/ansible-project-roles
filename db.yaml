@@ -1,0 +1,4 @@
+- name: configuring db 
+  hosts: db
+  roles:
+  - db

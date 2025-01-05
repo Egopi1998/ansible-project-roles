@@ -1,0 +1,23 @@
+- name: install nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: latest
+- name:  systemctl enable/start nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes
+- name: Recursively remove default html
+  ansible.builtin.file:
+    path: usr/share/nginx/html
+    state: absent
+- name: download source code files
+  ansible.builtin.unarchive:
+    src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+- name: copy proxy setting to /etc/nginx/default.d
+  ansible.builtin.copy:
+    src: expense.conf
+    dest: /etc/nginx/default.d/expense.conf
+  notify: nginx restart

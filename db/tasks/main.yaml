@@ -1,0 +1,29 @@
+- name: installing mysql-server 
+  ansible.builtin.dnf:
+    name: mysql-server
+    state: present
+- name:  systemctl enable/start mysqld
+  ansible.builtin.service:
+    name: mysqld
+    state: started
+    enabled: yes
+- name: installing python dependencies for Ansible to interact with MySQL databases
+  ansible.builtin.pip:
+    name:
+    - PyMySQL
+    - cryptography
+    executable: pip3.9 # pip3.9 for python3.9  
+- name: check connection
+  community.mysql.mysql_info:
+    login_user: "{{ login_user }}"
+    login_password: "{{ db_root_password }}"
+    login_host: "{{ login_host }}"
+    filter: version
+  ignore_errors: yes
+  register: db_connection_output # check connection result will store in below variable
+- name: output of check connection
+  ansible.builtin.debug:
+    msg: "output {{ db_connection_output }}"
+- name: mysql root password
+  ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ db_root_password }}"
+  when: db_connection_output.failed is true #don't give/use {{}} in when condition for variable
