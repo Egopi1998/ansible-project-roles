@@ -1,4 +1,7 @@
 - name: configuring frontend
   hosts: frontend
+  vars_files:
+  - secrets.yaml
+  become: yes
   roles:
   - frontend

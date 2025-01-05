@@ -4,4 +4,4 @@
   - secrets.yaml
   become: yes
   roles:
-  - db
+  - backend
