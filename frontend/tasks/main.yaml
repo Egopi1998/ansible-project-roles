@@ -17,7 +17,7 @@
     dest: /usr/share/nginx/html
     remote_src: yes
 - name: copy proxy setting to /etc/nginx/default.d
-  ansible.builtin.copy:
-    src: expense.conf
-    dest: /etc/nginx/default.d/expense.conf
+  ansible.builtin.template:
+      src: templates/expense.conf.j2
+      dest: /etc/nginx/default.d/expense.conf
   notify: nginx restart

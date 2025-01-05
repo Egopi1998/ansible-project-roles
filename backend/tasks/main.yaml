@@ -30,10 +30,9 @@
   args:
     chdir: /app
 - name: copy backend service to /etc/systemd/system/
-  ansible.builtin.copy:
-    src: backend.service
-    dest: /etc/systemd/system/backend.service
-    # remote_src: yes
+  ansible.builtin.template:
+      src: templates/backend.service.j2
+      dest: /etc/systemd/system/backend.service
 - name: installing python dependencies for Ansible to interact with MySQL databases
   ansible.builtin.pip:
     name:
