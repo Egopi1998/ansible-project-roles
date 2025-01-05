@@ -1,4 +1,7 @@
-- name: configuring backend
+- name: configuring backend 
   hosts: backend
+  vars_files:
+  - secrets.yaml
+  become: yes
   roles:
-  - backend
+  - db
