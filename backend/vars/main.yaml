@@ -1,2 +1,2 @@
-login_host: db.hellandhaven.xyz
-DB_HOST: db.hellandhaven.xyz
+app_location: /app
+component: backend

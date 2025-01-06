@@ -1,0 +1,6 @@
+login_user: root
+login_host: db-dev.hellandhaven.xyz
+login_password: ExpenseApp1
+DB_HOST: db-dev.hellandhaven.xyz
+BACKEND_API_URL: backend.app-dev.hellandhaven.xyz
+nexus_url: nexus.hellandhaven.xyz:8081

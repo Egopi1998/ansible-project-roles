@@ -1,1 +1,4 @@
 # Backend: backend.hellandhaven.xyz
+
+component: frontend
+app_location: /usr/share/nginx/html
