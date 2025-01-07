@@ -54,7 +54,7 @@
 - name: copy backend service
   ansible.builtin.template:
     src: backend1.sql.j2
-    dest: /app/schema/backend1.sql
+    dest: /app/schema/backend1.sql #it is already there in backend package but as ExpenseApp@1 so to temporerly i am copying like this 
 
 - name: import data into mysql
   community.mysql.mysql_db:
