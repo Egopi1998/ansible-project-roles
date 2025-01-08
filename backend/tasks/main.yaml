@@ -51,17 +51,13 @@
     - cryptography
     executable: pip3.9 # pip3.11 if python version is 3.11
 
-- name: copy backend service
-  ansible.builtin.template:
-    src: backend1.sql.j2
-    dest: /app/schema/backend1.sql #it is already there in backend package but as ExpenseApp@1 so to temporerly i am copying like this 
 
 - name: import data into mysql
   community.mysql.mysql_db:
     login_user: "{{ login_user }}"
     login_password: "{{ login_password }}"
     login_host: "{{ login_host }}"
-    target: /app/schema/backend1.sql
+    target: /app/schema/backend.sql
     state: import
     name: all
 
